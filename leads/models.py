@@ -16,3 +16,11 @@ class Lead(models.Model):
 class Agent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.user.email
+
+
+def foo(color, *args):
+    print(color, *args)
+
+foo("red", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
