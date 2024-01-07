@@ -12,15 +12,13 @@ class Lead(models.Model):
     age = models.IntegerField(default=0)
     agent = models.ForeignKey("Agent", on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class Agent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user.email
+        return f"{self.user.email}"
 
-
-def foo(color, *args):
-    print(color, *args)
-
-foo("red", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
