@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Lead</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <a href="/leads" class="go-back">Go back to Leads</a>
+    <hr>
+    <h1>Create a new Lead</h1>
+    <form method="post" action=".">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
