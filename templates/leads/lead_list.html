@@ -1,72 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leads</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            font-size: 2em;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        .lead {
-            padding: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 60%;
-            margin: 20px auto;
-            border-radius: 8px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .lead:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        a {
-            text-decoration: none;
-            color: #2980b9;
-            font-size: 1.2em;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #3498db;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-    </style>
-</head>
-
-<body>
-    <a href="{% url 'leads:lead-create' %}">Create a new Lead</a>
-    <hr>
-    <h1>Leads</h1>
-    <ul>
-        {% for lead in leads %}
-        <li class="lead">
-            <a href="{% url 'leads:lead-detail' lead.pk %}">{{ lead.first_name }} {{ lead.last_name }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</body>
-
-</html>
+{% extends "base.html" %}
+{% block content %}
+<a href="{% url 'leads:lead-create' %}">Create a new Lead</a>
+<hr>
+<h1>Leads</h1>
+<ul>
+    {% for lead in leads %}
+    <li class="lead">
+        <a href="{% url 'leads:lead-detail' lead.pk %}">{{ lead.first_name }} {{ lead.last_name }}</a>
+    </li>
+    {% endfor %}
+    {% endblock content %}
