@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from .models import Lead
-from .forms import LeadForm
+from django.shortcuts import render, redirect
+from .models import Lead, Agent
+from .forms import LeadModelForm
 
 # Home Page
 def home_page(request):
@@ -25,9 +25,38 @@ def lead_detail(request, pk):
     return render(request, "leads/lead_detail.html", context)
 
 
+# Lead Create Page
 def lead_create(request):
-    print(request.POST)
+    form = LeadModelForm() # returning a blank form
+    if request.method == "POST":
+        form = LeadModelForm(data=request.POST, initial={'first_name': 'John'})
+        if form.is_valid():
+            form.save()
+            return redirect("/leads")
+            
     context = {
-        "form" : LeadForm()
+        "form" : form
     }
     return render(request, "leads/lead_create.html", context)
+
+
+# Lead Update Page
+def lead_update(request, pk):
+    lead = Lead.objects.get(id=pk)
+    form = LeadModelForm(instance=lead)
+    if request.method == "POST":
+        form = LeadModelForm(data=request.POST, instance=lead)
+        if form.is_valid():
+            form.save()
+            return redirect("/leads")
+    context = {
+        "form":form,
+        "lead":lead
+    }
+    return render(request, "leads/lead_update.html", context)
+
+# Lead Delete Page
+def lead_delete(request, pk):
+    lead = Lead.objects.get(id=pk)
+    lead.delete()
+    return redirect("/leads")

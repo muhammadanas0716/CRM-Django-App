@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create a Lead</title>
+    <title>Lead Update</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -15,7 +15,7 @@
             box-sizing: border-box;
         }
 
-        a.go-back {
+        a {
             text-decoration: none;
             color: #2980b9;
             font-size: 1em;
@@ -23,7 +23,7 @@
             display: inline-block;
         }
 
-        a.go-back:hover {
+        a:hover {
             color: #3498db;
         }
 
@@ -49,10 +49,6 @@
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 15px;
         }
 
         label {
@@ -90,10 +86,10 @@
 </head>
 
 <body>
-    <a href="{% url 'leads:lead-list' %}" class="go-back">Go back to Leads</a>
+    <a href="{% url 'leads:lead-list' %}">Go back to Leads</a>
     <hr>
-    <h1>Create a New Lead</h1>
-    <form method="post" action=".">
+    <h1>Update Lead: {{ lead.first_name }} {{ lead.last_name }}</h1>
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>

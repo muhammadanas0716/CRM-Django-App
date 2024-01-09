@@ -84,12 +84,16 @@
 
 <body>
     <h1>Lead Detail</h1>
-    <a href="/leads" class="go-back">Go back to Leads</a>
+    <a href="{% url 'leads:lead-list' %}" class="go-back">Go back to Leads</a>
     <hr>
     <div class="lead">
         <h2>{{ lead.first_name }} {{ lead.last_name }}</h2>
         <h3>Age: {{ lead.age }}</h3>
         <h3>Agent Assigned: {{ lead.agent }}</h3>
+        &nbsp;
+        <a href="{% url 'leads:lead-update' lead.pk %}">UPDATE</a>
+        &nbsp;
+        <a href="{% url 'leads:lead-delete' lead.pk %}">DELETE</a>
     </div>
 </body>
 
