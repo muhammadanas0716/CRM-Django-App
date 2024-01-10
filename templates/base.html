@@ -5,22 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DJCRM</title>
-    <style>
-        .lead {
-            padding: 10px 6px;
-            padding-right: 6px;
-            padding-left: 6px;
-            margin-top: 10px;
-            margin: 0 auto;
-            background-color: #f6f6f6;
-            width: 90%;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-    {% block content %}
-    {% endblock content %}
+    <div class="max-w-7xl mx-auto">
+        {% include "navbar.html" %}
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    {% include "scripts.html" %}
 </body>
 
 </html>

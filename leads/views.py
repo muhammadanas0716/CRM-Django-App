@@ -3,8 +3,8 @@ from .models import Lead, Agent
 from .forms import LeadModelForm
 
 # Home Page
-def home_page(request):
-    return render(request, "home.html")
+def landing_page(request):
+    return render(request, "landing.html")
 
 # Leads Table Page
 def lead_list(request):
