@@ -17,9 +17,6 @@ class Lead(models.Model):
         return f"{self.first_name} {self.last_name}"
     
 
-    def __reduce__(self) -> str | tuple[Any, ...]:
-        return super().__reduce__()
-
 
 class Agent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
