@@ -1,4 +1,4 @@
-from typing import Any
+
 from django.shortcuts import reverse
 from django.core.mail import send_mail
 from django.views.generic import (
@@ -61,4 +61,6 @@ class LeadDeleteView(DeleteView):
     
     def get_success_url(self):
         return reverse("leads:lead-list")
+
+
     
