@@ -18,8 +18,9 @@
         {% if request.user.is_authenticated %}
         Logged in as: &nbsp;<strong>{{ request.user.username }}</strong>
         &nbsp;
-        <a href="{% url 'logout' %}">
-            <button
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit"
                 class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
                 Logout
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -27,7 +28,7 @@
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                 </svg>
             </button>
-        </a>
+        </form>
         {% else %}
         <a href="{% url 'login' %}">
             <button
@@ -39,5 +40,6 @@
             </button>
         </a>
         {% endif %}
+
     </div>
 </header>
