@@ -9,11 +9,18 @@
             <span class="ml-3 text-xl">DJ CRM</span>
         </a>
         <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <a href="{% url 'leads:lead-list' %}" class="mr-5 hover:text-gray-900">Leads</a>
+            <a href="{% url 'landing-page' %}" class="mr-5 hover:text-gray-900">Leads</a>
             {% if not request.user.is_authenticated %}
-            <a class="mr-5 hover:text-gray-900">Signup</a>
+            <a class="mr-5 hover:text-gray-900" href="{% url 'signup' %}">Signup</a>
+            {% else %}
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="mr-5 hover:text-gray-900"
+                    style="background: none; border: none; padding: 0; color: inherit; font: inherit; cursor: pointer;">Logout</button>
+            </form>
             {% endif %}
         </nav>
+
 
         {% if request.user.is_authenticated %}
         Logged in as: &nbsp;<strong>{{ request.user.username }}</strong>
@@ -40,6 +47,8 @@
             </button>
         </a>
         {% endif %}
+
+
 
     </div>
 </header>

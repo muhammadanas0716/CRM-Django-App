@@ -9,7 +9,23 @@ CreateView,
 UpdateView, 
 DeleteView)
 from .models import Lead
-from .forms import LeadModelForm
+from .forms import LeadModelForm, CustomUserForm
+
+
+from django.contrib.auth.models import User
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
+class SignupView(CreateView):
+    template_name = "registration/signup.html"
+    form_class = CustomUserForm
+    success_url = reverse_lazy('some_success_url')  # replace with the URL to redirect to after successful signup
+
+    def form_valid(self, form):
+        user = form.save()
+        # You can add additional logic here if needed
+        return super().form_valid(form)
+
 
 # Landing Page View
 class LandingPageView(TemplateView):
